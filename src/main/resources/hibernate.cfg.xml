@@ -17,7 +17,9 @@
         <property name="format_sql">true</property>
         <property name="use_sql_comments">true</property>
 
-        <mapping class="ru.job4j.hibernate.model.AutoModel" />
-        <mapping class="ru.job4j.hibernate.model.AutoBrand" />
+        <mapping class="ru.job4j.onetomany.AutoModel" />
+        <mapping class="ru.job4j.onetomany.AutoBrand" />
+        <mapping class="ru.job4j.manytomany.Author" />
+        <mapping class="ru.job4j.manytomany.Book" />
     </session-factory>
 </hibernate-configuration>

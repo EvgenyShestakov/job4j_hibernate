@@ -1,26 +1,21 @@
-package ru.job4j.hibernate.model;
+package ru.job4j.manytomany;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 @Entity
-@Table(name = "brand")
-public class AutoBrand {
+@Table(name = "book")
+public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     private String name;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<AutoModel> autoModelList = new ArrayList<>();
-
-    public static AutoBrand of(String name) {
-        AutoBrand brand = new AutoBrand();
-        brand.name = name;
-        return brand;
+    public static Book of(String name) {
+        Book book = new Book();
+        book.name = name;
+        return book;
     }
 
     public int getId() {
@@ -39,10 +34,6 @@ public class AutoBrand {
         this.name = name;
     }
 
-    public void addAutoModel(AutoModel autoModel) {
-        this.autoModelList.add(autoModel);
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -51,8 +42,8 @@ public class AutoBrand {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        AutoBrand autoBrand = (AutoBrand) o;
-        return id == autoBrand.id && Objects.equals(name, autoBrand.name);
+        Book book = (Book) o;
+        return id == book.id && Objects.equals(name, book.name);
     }
 
     @Override
@@ -62,7 +53,7 @@ public class AutoBrand {
 
     @Override
     public String toString() {
-        return "AutoBrand{"
+        return "Book{"
                 + "id=" + id
                 + ", name='" + name + '\''
                 + '}';

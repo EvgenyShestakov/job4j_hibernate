@@ -1,12 +1,12 @@
-package ru.job4j.hibernate.store;
+package ru.job4j.onetomany;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import ru.job4j.hibernate.model.AutoBrand;
-import ru.job4j.hibernate.model.AutoModel;
+import ru.job4j.onetomany.AutoBrand;
+import ru.job4j.onetomany.AutoModel;
 
 public class HbmRun {
     public static void main(String[] args) {

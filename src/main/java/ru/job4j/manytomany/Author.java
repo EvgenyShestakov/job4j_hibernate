@@ -1,21 +1,26 @@
-package ru.job4j.hibernate.model;
+package ru.job4j.manytomany;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
-@Table(name = "model")
-public class AutoModel {
+@Table(name = "author")
+public class Author {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     private String name;
 
-    public static AutoModel of(String name) {
-        AutoModel model = new AutoModel();
-        model.name = name;
-        return model;
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    private Set<Book> books = new HashSet<>();
+
+    public static Author of(String name) {
+        Author author = new Author();
+        author.name = name;
+        return author;
     }
 
     public int getId() {
@@ -34,6 +39,10 @@ public class AutoModel {
         this.name = name;
     }
 
+    public void addBooks(Book book) {
+        this.books.add(book);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -42,20 +51,22 @@ public class AutoModel {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        AutoModel autoModel = (AutoModel) o;
-        return id == autoModel.id && Objects.equals(name, autoModel.name);
+        Author author = (Author) o;
+        return id == author.id && Objects.equals(name, author.
+                name) && Objects.equals(books, author.books);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name);
+        return Objects.hash(id, name, books);
     }
 
     @Override
     public String toString() {
-        return "AutoModel{"
+        return "Author{"
                 + "id=" + id
                 + ", name='" + name + '\''
+                + ", books=" + books
                 + '}';
     }
 }
