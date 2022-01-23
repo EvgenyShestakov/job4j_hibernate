@@ -16,13 +16,18 @@ public class Candidate {
 
     private int salary;
 
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "job_database_id")
+    private JobDatabase jobDatabase;
+
     public Candidate() {
     }
 
-    public Candidate(String name, double experience, int salary) {
+    public Candidate(String name, double experience, int salary, JobDatabase jobDatabase) {
         this.name = name;
         this.experience = experience;
         this.salary = salary;
+        this.jobDatabase = jobDatabase;
     }
 
     public int getId() {
@@ -57,6 +62,14 @@ public class Candidate {
         this.salary = salary;
     }
 
+    public JobDatabase getJobDatabase() {
+        return jobDatabase;
+    }
+
+    public void setJobDatabase(JobDatabase jobDatabase) {
+        this.jobDatabase = jobDatabase;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -83,6 +96,7 @@ public class Candidate {
                 + ", name='" + name + '\''
                 + ", experience=" + experience
                 + ", salary=" + salary
+                + ", jobDatabase=" + jobDatabase
                 + '}';
     }
 }

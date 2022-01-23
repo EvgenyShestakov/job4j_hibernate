@@ -24,5 +24,7 @@
         <mapping class="ru.job4j.lazy.Brand" />
         <mapping class="ru.job4j.lazy.Model" />
         <mapping class="ru.job4j.hql.Candidate" />
+        <mapping class="ru.job4j.hql.JobDatabase" />
+        <mapping class="ru.job4j.hql.Vacancy" />
     </session-factory>
 </hibernate-configuration>
